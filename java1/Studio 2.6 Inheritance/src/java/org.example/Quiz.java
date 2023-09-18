@@ -1,11 +1,10 @@
 package org.example;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
-//im trying to make a commit
-class Quiz {
 
+
+public class Quiz {
     private ArrayList<Question> questions;
     private int score;
 
@@ -27,15 +26,66 @@ class Quiz {
                 System.out.println((i+1) + ". " + question.getChoices().get(i));
             }
 
-            int answer = scanner.nextInt();
-            scanner.nextLine(); // clear newline
+            String inputString = scanner.next();
+            int answer = 0;
+            ArrayList<Integer> checkBoxAnswers = new ArrayList<Integer>();
 
-            if (question.getChoices().get(answer-1).equals(question.getAnswer())) {
-                score++;
+            try{
+                if (inputString.contains(",")){
+                    // split string
+                }
+                else{
+                    answer = Integer.parseInt(inputString);
+                }
+
+            }
+            catch (Exception e){
+                answer = 0;
+            }
+
+            // grade question
+            // use 'number' input (1, 2, 3, etc...)
+            if (answer >= 1){
+                for (int i = 0; i < question.getChoices().size(); i++) {
+                    if (answer == i + 1){
+                        if (question instanceof MultipleChoice) {
+                            // Handle MultipleChoice logic here
+                        } else if (question instanceof Checkbox) {
+                            // Handle Checkbox logic here
+                        }
+
+                        // make sure this is the correct answer
+                        String correctAnswer = question.getAnswer();
+                        String inputAnswer = question.getChoices().get(i);
+
+                        correctAnswer = correctAnswer.toLowerCase();
+                        inputAnswer = inputAnswer.toLowerCase();
+
+                        if (correctAnswer.equals(inputAnswer)) {
+                            score++;
+                        }
+
+                        break;
+                    }
+                }
+            }
+            else{
+                for (int i = 0; i < question.getChoices().size(); i++) {
+                    // make sure this is the correct answer
+                    String correctAnswer = question.getAnswer();
+                    String inputAnswer = question.getChoices().get(i);
+
+                    correctAnswer = correctAnswer.toLowerCase();
+                    inputAnswer = inputAnswer.toLowerCase();
+
+                    if (correctAnswer.equals(inputAnswer)) {
+                        score++;
+                        break;
+                    }
+                }
             }
         }
 
         System.out.println("You got " + score + " out of " + questions.size() + " questions correct!");
     }
-
 }

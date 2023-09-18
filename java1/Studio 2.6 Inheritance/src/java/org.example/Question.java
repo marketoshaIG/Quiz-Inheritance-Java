@@ -37,4 +37,9 @@ public class Question {
     public String getAnswer() {
         return answer;
     }
+
+    // will only be used by child classes
+    public ArrayList<String> getAnswers(){
+        return null;
+    }
 }

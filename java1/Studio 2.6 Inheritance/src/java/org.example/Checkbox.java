@@ -1,12 +1,16 @@
 package org.example;
-
 import java.util.ArrayList;
 
 public class Checkbox extends Question {
-    ArrayList<String> correctAnswer = new ArrayList();
+    ArrayList<String> correctAnswers = new ArrayList<String>();
 
-    public Checkbox(String prompt, ArrayList<String> answers) {
-        super(prompt, answers);
-        this.correctAnswer = this.correctAnswer;
+    public Checkbox(String prompt, ArrayList<String> answers, ArrayList<String> correctAnswers) {
+        super(prompt, answers, String.valueOf(correctAnswers));
+        this.correctAnswers = correctAnswers;
+    }
+
+    @Override
+    public ArrayList<String> getAnswers(){
+        return correctAnswers;
     }
 }
