@@ -2,7 +2,7 @@ package org.example;
 import java.util.ArrayList;
 
 public class Checkbox extends Question {
-    ArrayList<String> correctAnswers = new ArrayList<String>();
+    ArrayList<String> correctAnswers;
 
     public Checkbox(String prompt, ArrayList<String> answers, ArrayList<String> correctAnswers) {
         super(prompt, answers, String.valueOf(correctAnswers));
